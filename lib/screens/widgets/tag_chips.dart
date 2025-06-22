@@ -14,29 +14,39 @@ class _TagChipsState extends State<TagChips> {
   List<TagEntity> selectedTags = [];
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      children: [
-        for (TagEntity t in widget.tags) ...[
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 3),
-            child: FilterChip(
-              selected: selectedTags.contains(t),
-              labelStyle: TextStyle(color: Colors.white),
-              label: Text(t.name),
-              onSelected: (val) {
-                setState(() {
-                  if (val) {
-                    selectedTags = [...selectedTags, t];
-                    return;
-                  }
-                  selectedTags.remove(t);
-                });
-              },
+    return SizedBox(
+      height: 350,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Wrap(
+          direction: Axis.horizontal,
+          children: [
+            for (TagEntity t in widget.tags) ...[
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 3),
+                child: FilterChip(
+                  selected: selectedTags.contains(t),
+                  labelStyle: TextStyle(color: Colors.white),
+                  label: Text(t.name),
+                  onSelected: (val) {
+                    setState(() {
+                      if (val) {
+                        selectedTags = [...selectedTags, t];
+                        return;
+                      }
+                      selectedTags.remove(t);
+                    });
+                  },
+                ),
+              ),
+            ],
+            IconButton.outlined(
+              onPressed: () {},
+              icon: Icon(CupertinoIcons.add),
             ),
-          ),
-        ],
-        IconButton.outlined(onPressed: () {}, icon: Icon(CupertinoIcons.add)),
-      ],
+          ],
+        ),
+      ),
     );
   }
 }

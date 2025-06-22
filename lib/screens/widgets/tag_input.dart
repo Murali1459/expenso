@@ -25,15 +25,6 @@ class _TagInputState extends State<TagInput> {
       return CircularProgressIndicator();
     }
 
-    List<TagEntity> tags = [
-      TagEntity(name: "Hi123"),
-      TagEntity(name: "Hib"),
-      TagEntity(name: "Hibm"),
-      TagEntity(name: "Hibm123"),
-      TagEntity(name: "Hibm12"),
-      TagEntity(name: "Hibmn"),
-      TagEntity(name: "Hiadnhas"),
-    ];
     return TagChips(tags: tags);
   }
 

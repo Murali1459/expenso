@@ -1,6 +1,6 @@
 import 'package:expenso/db/database.dart';
 import 'package:expenso/entities/expense.dart';
-import 'package:expenso/screens/widgets/add_expense.dart';
+import 'package:expenso/screens/widgets/expense_form.dart';
 import 'package:expenso/screens/widgets/expense_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,14 +24,9 @@ class _ExpenseListState extends State<ExpenseList> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color.fromARGB(215, 0, 0, 0),
         onPressed: () async {
-          bool newExpenseAdded = await showModalBottomSheet(
-            isScrollControlled: true,
-            context: context,
-            builder: (ctx) => AddExpense(),
-          );
-          if (newExpenseAdded) {
-            setState(() {});
-          }
+          Navigator.of(
+            context,
+          ).push(MaterialPageRoute(builder: (_) => ExpenseForm()));
         },
         child: Icon(CupertinoIcons.add),
       ),
