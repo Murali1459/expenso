@@ -7,9 +7,12 @@ import 'package:floor/floor.dart';
 import 'package:sqflite/sqflite.dart' as sqflite;
 import 'dart:async';
 
-part 'database.g.dart';
+part '../generated/db/database.g.dart';
 
-@Database(version: 1, entities: [ExpenseEntity, TagEntity, ExpenseTagJoin])
+@Database(
+  version: 1,
+  entities: [ExpenseEntity, TagEntity, ExpenseTagJoinEntity],
+)
 abstract class ExpenseDb extends FloorDatabase {
   ExpenseDAO get expenseDao;
   TagDao get tagDao;

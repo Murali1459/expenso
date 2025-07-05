@@ -5,4 +5,7 @@ import 'package:floor/floor.dart';
 abstract class TagDao {
   @Query("SELECT * from tag")
   Future<List<TagEntity>> getAllTags();
+
+  @insert
+  Future<int> insertTag(TagEntity t);
 }

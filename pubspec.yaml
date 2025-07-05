@@ -38,9 +38,12 @@ dependencies:
   sqflite: ^2.4.2
   path: ^1.9.1
   floor: ^1.5.0
-  build_runner: ^2.5.3
-  floor_generator: ^1.5.0
   fl_chart: ^1.0.0
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+  freezed_annotation: ^2.4.4
+  json_annotation: ^4.9.0
+  grinder: ^0.9.5
 
 dev_dependencies:
   flutter_test:
@@ -52,6 +55,13 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
+  build_runner: ^2.5.4
+  floor_generator: ^1.5.0
+  riverpod_generator: ^2.6.3
+  custom_lint: ^0.7.0
+  riverpod_lint: ^2.6.3
+  freezed: ^2.5.7
+  json_serializable: ^6.9.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

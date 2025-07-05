@@ -18,11 +18,11 @@ import 'package:floor/floor.dart';
     ),
   ],
 )
-class ExpenseTagJoin {
+class ExpenseTagJoinEntity {
   @ColumnInfo()
   final int expenseId;
   @ColumnInfo()
   final int tagId;
 
-  ExpenseTagJoin({required this.expenseId, required this.tagId});
+  ExpenseTagJoinEntity({required this.expenseId, required this.tagId});
 }

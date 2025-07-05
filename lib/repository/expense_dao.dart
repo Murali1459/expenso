@@ -11,4 +11,7 @@ abstract class ExpenseDAO {
 
   @delete
   Future<void> removeExpense(ExpenseEntity e);
+
+  @Query("SELECT * from expense where id = :id")
+  Future<ExpenseEntity?> getId(int id);
 }

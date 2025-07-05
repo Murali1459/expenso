@@ -1,24 +1,22 @@
-import 'package:expenso/screens/navigate_screen.dart';
+import 'package:expenso/providers/screen_provider.dart';
+import 'package:expenso/screens/dashboard_screen.dart';
+import 'package:expenso/screens/expense_list_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const ExpensoApp());
+  runApp(ProviderScope(child: const ExpensoApp()));
 }
 
-class ExpensoApp extends StatefulWidget {
+class ExpensoApp extends ConsumerWidget {
   const ExpensoApp({super.key});
 
   @override
-  State<ExpensoApp> createState() => _ExpensoAppState();
-}
-
-class _ExpensoAppState extends State<ExpensoApp> {
-  int screenIndex = 0;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final sp = ref.watch(screenProvider);
+    final screens = [ExpenseListScreen(), DashboardScreen()];
     return MaterialApp(
       home: Scaffold(
         bottomNavigationBar: NavigationBar(
@@ -32,14 +30,11 @@ class _ExpensoAppState extends State<ExpensoApp> {
               label: "Dashboard",
             ),
           ],
-          selectedIndex: screenIndex,
-          onDestinationSelected: (val) {
-            setState(() {
-              screenIndex = val;
-            });
-          },
+          selectedIndex: sp,
+          onDestinationSelected: (val) =>
+              ref.read(screenProvider.notifier).change(val),
         ),
-        body: NavigateScreen(index: screenIndex),
+        body: screens[sp],
       ),
       theme: ThemeData.dark(),
     );

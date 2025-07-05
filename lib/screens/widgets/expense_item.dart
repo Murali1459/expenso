@@ -1,19 +1,16 @@
-import 'package:expenso/entities/expense.dart';
-import 'package:expenso/screens/widgets/tag_chip.dart';
+import 'package:expenso/domain/expense.dart' as expense_domain;
+import 'package:expenso/screens/widgets/tag.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ExpenseItem extends StatelessWidget {
-  final ExpenseEntity expense;
-  final Function(DismissDirection) onDismissed;
-  const ExpenseItem({
-    super.key,
-    required this.expense,
-    required this.onDismissed,
-  });
+class ExpenseItem extends ConsumerWidget {
+  final expense_domain.Expense expense;
+  final void Function()? onDismissed;
+  const ExpenseItem({super.key, required this.expense, this.onDismissed});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Dismissible(
       direction: DismissDirection.startToEnd,
       background: Container(
@@ -22,8 +19,12 @@ class ExpenseItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
         ),
       ),
-      onDismissed: onDismissed,
-      key: Key("$expense.id!"),
+      onDismissed: (dir) {
+        if (dir == DismissDirection.startToEnd && onDismissed != null) {
+          onDismissed!();
+        }
+      },
+      key: Key("${expense.id!}"),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
