@@ -17,7 +17,7 @@ class Expense extends _$Expense {
     return _expenses!;
   }
 
-  Future<void> add(expense_domain.Expense e) async {
+  Future<int> add(expense_domain.Expense e) async {
     final db = await ref.read(dbProvider.future);
     return db.expenseDao.insertExpense(e.toEntity());
   }

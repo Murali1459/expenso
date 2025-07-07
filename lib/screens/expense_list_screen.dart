@@ -68,9 +68,10 @@ class _ExpenseListState extends ConsumerState<ExpenseListScreen> {
 
     if (!context.mounted) return;
 
+    ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text("Expense Removed"),
+        content: Text("Expense ${e.name} Removed"),
         behavior: SnackBarBehavior.floating,
         action: SnackBarAction(
           label: "Undo",

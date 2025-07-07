@@ -75,11 +75,10 @@ class _ExpenseFormState extends ConsumerState<ExpenseFields> {
               _date = d;
               _dateCtrl.text = "${d!.day}/${d.month}/${d.year}";
             });
-            ref
-                .read(expenseFormProvider.notifier)
-                .setTransactionDate(_dateCtrl.text);
           },
           validator: (_) => _date == null ? 'Pick a date' : null,
+          onSaved: (val) =>
+              ref.read(expenseFormProvider.notifier).setTransactionDate(val!),
         ),
         Row(
           spacing: 10,

@@ -18,7 +18,18 @@ class Tag extends _$Tag {
   Future<void> add(String name) async {
     final db = await ref.read(dbProvider.future);
     final id = await db.tagDao.insertTag(TagEntity(name: name));
-    state = state.whenData((l) => [...l, tag_domain.Tag(name: name, id: id)]);
+    state = state.whenData(
+      (l) => [...l, tag_domain.Tag(name: name, id: id, selected: true)],
+    );
     return;
+  }
+
+  Future<void> select(int ind, bool val) async {
+    state = state.whenData((list) {
+      final updatedList = List.of(list);
+      final item = updatedList[ind];
+      updatedList[ind] = item.copyWith(selected: val);
+      return updatedList;
+    });
   }
 }

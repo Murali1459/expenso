@@ -11,6 +11,7 @@ class Expense with _$Expense {
     @Default('') String name,
     @Default('') String transactionDate,
     @Default(0.0) double spent,
+    List<String>? tags,
     String? note,
   }) = _Expense;
 

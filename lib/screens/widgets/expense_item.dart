@@ -61,7 +61,7 @@ class ExpenseItem extends ConsumerWidget {
                 child: Row(
                   spacing: 5,
                   children: [
-                    for (int i = 0; i < 30; i++) Tag(name: "card$i$i$i$i"),
+                    for (var tag in expense.tags ?? []) Tag(name: "#$tag"),
                   ],
                 ),
               ),

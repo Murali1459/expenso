@@ -7,7 +7,7 @@ abstract class ExpenseDAO {
   Future<List<ExpenseEntity>> getAllExpenses();
 
   @Insert()
-  Future<void> insertExpense(ExpenseEntity e);
+  Future<int> insertExpense(ExpenseEntity e);
 
   @delete
   Future<void> removeExpense(ExpenseEntity e);
