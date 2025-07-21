@@ -1,3 +1,4 @@
+import 'package:expenso/domain/tag.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part '../generated/domain/expense.freezed.dart';
@@ -11,7 +12,7 @@ class Expense with _$Expense {
     @Default('') String name,
     @Default('') String transactionDate,
     @Default(0.0) double spent,
-    List<String>? tags,
+    List<Tag>? tags,
     String? note,
   }) = _Expense;
 

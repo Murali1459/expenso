@@ -61,7 +61,8 @@ class ExpenseItem extends ConsumerWidget {
                 child: Row(
                   spacing: 5,
                   children: [
-                    for (var tag in expense.tags ?? []) Tag(name: "#$tag"),
+                    for (var tag in expense.tags ?? [])
+                      Tag(name: "${tag.name}", key: ValueKey(tag.id)),
                   ],
                 ),
               ),

@@ -10,6 +10,7 @@ import 'package:floor/floor.dart';
       childColumns: ['expenseId'],
       parentColumns: ['id'],
       entity: ExpenseEntity,
+      onDelete: ForeignKeyAction.cascade,
     ),
     ForeignKey(
       childColumns: ['tagId'],
@@ -19,9 +20,7 @@ import 'package:floor/floor.dart';
   ],
 )
 class ExpenseTagJoinEntity {
-  @ColumnInfo()
   final int expenseId;
-  @ColumnInfo()
   final int tagId;
 
   ExpenseTagJoinEntity({required this.expenseId, required this.tagId});

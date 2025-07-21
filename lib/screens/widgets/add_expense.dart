@@ -1,5 +1,6 @@
 import 'package:expenso/providers/expense_form_provider.dart';
 import 'package:expenso/providers/expense_provider.dart';
+import 'package:expenso/providers/expense_tag_provider.dart';
 import 'package:expenso/screens/widgets/add_tag.dart';
 import 'package:expenso/screens/widgets/custom_chip.dart';
 import 'package:expenso/screens/widgets/text_fields_form.dart';
@@ -98,11 +99,16 @@ class _AddExpenseState extends ConsumerState<AddExpense> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       expense_domain.Expense e = ref.read(expenseFormProvider);
-      await ref.read(expenseProvider.notifier).add(e);
+      final id = await ref.read(expenseProvider.notifier).add(e);
+      await ref.read(expenseTagProvider.notifier).add(id, getSelectedTags());
 
       if (context.mounted) {
         Navigator.of(context).pop();
       }
     }
+  }
+
+  List<tag_domain.Tag> getSelectedTags() {
+    return _tags.where((t) => t.selected).toList();
   }
 }
