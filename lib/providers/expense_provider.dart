@@ -51,7 +51,6 @@ class Expense extends _$Expense {
         tags.add(Tag(id: int.parse(tagIds[i]), name: tagNames[i]));
       }
       expense_domain.Expense e = expense_domain.Expense.fromJson(expense);
-      print("adding $e");
       expenses.add(e.copyWith(tags: tags));
     }
     return expenses;
@@ -68,8 +67,5 @@ class Expense extends _$Expense {
     var res2 = await db.executeRawQuery('''
 			select * from expense_tag_join
 ''');
-    print("tags: $res");
-    print("exp: $res1");
-    print("exp: $res2");
   }
 }

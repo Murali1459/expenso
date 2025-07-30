@@ -1,6 +1,7 @@
 import 'package:expenso/providers/screen_provider.dart';
 import 'package:expenso/screens/dashboard_screen.dart';
 import 'package:expenso/screens/expense_list_screen.dart';
+import 'package:expenso/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,7 +17,7 @@ class ExpensoApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final sp = ref.watch(screenProvider);
-    final screens = [ExpenseListScreen(), DashboardScreen()];
+    final screens = [HomeScreen(), DashboardScreen()];
     return MaterialApp(
       home: Scaffold(
         bottomNavigationBar: NavigationBar(

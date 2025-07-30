@@ -1,5 +1,7 @@
 import 'package:expenso/domain/expense.dart' as expense_domain;
+import 'package:expenso/providers/chart_provider.dart';
 import 'package:expenso/providers/expense_provider.dart';
+import 'package:expenso/screens/pie_chart_screen.dart';
 import 'package:expenso/screens/widgets/expense_item.dart';
 import 'package:expenso/screens/expense_form_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -19,24 +21,10 @@ class _ExpenseListState extends ConsumerState<ExpenseListScreen> {
   @override
   Widget build(BuildContext context) {
     final exp = ref.watch(expenseProvider);
-    return Scaffold(
-      appBar: AppBar(title: Text("Expenses")),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Color.fromARGB(215, 0, 0, 0),
-        onPressed: () async {
-          await Navigator.of(
-            context,
-          ).push(MaterialPageRoute(builder: (_) => ExpenseFormScreen()));
-          ref.invalidate(expenseProvider);
-        },
-        child: Icon(CupertinoIcons.add),
-      ),
-      body: exp.when(
-        data: futureBuilder,
-        error: (e, _) => Text("ERROR $e"),
-        loading: () => CircularProgressIndicator(),
-      ),
+    return exp.when(
+      data: futureBuilder,
+      error: (e, _) => Text("ERROR $e"),
+      loading: () => CircularProgressIndicator(),
     );
   }
 
@@ -49,11 +37,13 @@ class _ExpenseListState extends ConsumerState<ExpenseListScreen> {
     return ListView.separated(
       padding: const EdgeInsets.symmetric(vertical: 12),
       itemCount: _expenses.length,
-      itemBuilder: (ctx, ind) => ExpenseItem(
-        key: ValueKey(_expenses[ind].id),
-        expense: _expenses[ind],
-        onDismissed: () => onDismissed(ind),
-      ),
+      itemBuilder: (ctx, ind) {
+        return ExpenseItem(
+          key: ValueKey(_expenses[ind].id),
+          expense: _expenses[ind],
+          onDismissed: () => onDismissed(ind),
+        );
+      },
       separatorBuilder: (_, _) => SizedBox(height: 10),
     );
   }
